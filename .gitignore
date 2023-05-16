@@ -1,0 +1,6 @@
+media/**
+__pycache__/
+/venv/
+.idea/
+db.sqlite3
+pablo_app/static/images

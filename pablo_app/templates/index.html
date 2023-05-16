@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Nico Fehr">
+    <title>Cover Template · Bootstrap v5.3</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+    <!-- Custom styles for this template -->
+      {% load static %}
+    <link href="{% static 'styles/cover.css' %}" rel="stylesheet">
+  </head>
+  <body class="d-flex h-100 text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <h3 class="float-md-start mb-0" style="display: inline-flex; align-items: center">
+              <a class="text-glow nav-link" href="#">Pablo</a>
+          </h3>
+          <nav class="nav nav-masthead justify-content-center float-md-end">
+
+            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+            <a class="nav-link fw-bold py-1 px-0" href="#">Features</a>
+            <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a>
+
+          </nav>
+        </div>
+      </header>
+
+      <main class="px-3 mt-5">
+        <h1 class="text-glow">Apply the style of any artist to your image</h1>
+
+        <p class="lead">
+          <a id="apply-style-button" href="#" class="btn btn-lg btn-bd-primary hidden" data-bs-toggle="modal"
+             data-bs-target="#pictureModal">
+            Apply Style</a>
+        </p>
+
+        <p class="lead">
+          <div class="row">
+            <div class="col-md-6 mt-2">
+
+              <div class="card image-card">
+                <img id="content-image" src="#" class="card-img-top hidden" alt="content image">
+
+                <div class="card-header">
+                  Content Image
+                </div>
+                <div class="card-body">
+
+                  <form enctype="multipart/form-data">
+                    <h5 class="card-title">Upload image</h5>
+                    <p class="card-text">
+
+                      <div class="mb-3">
+                        <label for="content-image-input" class="form-label">Upload your image</label>
+                        <input class="form-control" type="file" id="content-image-input">
+                      </div>
+
+                    </p>
+
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="col-md-6 mt-2">
+
+              <div class="card image-card">
+                <img id="style-image" src="#" class="card-img-top hidden" alt="style image">
+
+                <div class="card-header">
+                  Style Image
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Select artist image</h5>
+                  <p class="card-text">
+                    With a click on the button below, you can select from various images of famous artists.
+                    <br />
+                    Pablo will put your image in the style of the selected image.
+                  </p>
+
+                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse-artist-list" role="button"
+                     aria-expanded="false" aria-controls="collapseExample">
+                    Choose image
+                  </a>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </p>
+
+        <div class="mt-2 mb-4 collapse" id="collapse-artist-list">
+
+          <div class="accordion" id="artist-accordion">
+          </div>
+
+        </div>
+
+        <!-- results picture modal -->
+        <div class="modal fade" id="pictureModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="pictureModalLabel">Result Image</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div id="result-image-container" class="modal-body">
+
+                <div class="d-flex justify-content-center">
+                  <div class="spinner-border" role="status">
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary"></button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <footer class="mt-auto pb-2">
+        Pablo, the image style converter, by <a href="mailto:kyra.maag@ost.ch">Kyra Maag</a> and <a href="mailto:nico.fehr@ost.ch">Nico Fehr</a>
+      </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="{% static 'scripts/index.js' %}" type="module"></script>
+  </body>
+</html>
