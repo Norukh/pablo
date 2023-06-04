@@ -12,8 +12,16 @@ def tensor_to_image(tensor):
     return PIL.Image.fromarray(tensor)
 
 
-def load_img(path_to_img):
-    max_dim = 512
+def original_image_path(style_image_path: str) -> str:
+    if style_image_path is not None:
+        split_image_path = style_image_path.split("/")
+        image_name = "_".join(split_image_path[-1].split("_")[:-1])
+        return "/".join(split_image_path[:3] + ["original"] + [image_name] + split_image_path[4:])
+
+    return ""
+
+
+def load_img(path_to_img, max_dim=512):
     img = tf.io.read_file(path_to_img)
     img = tf.image.decode_image(img, channels=3)
     img = tf.image.convert_image_dtype(img, tf.float32)

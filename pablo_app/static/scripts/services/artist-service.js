@@ -19,8 +19,6 @@ async function postApplyStyle(chosenStyle) {
     })
         .then(res => res.blob())
         .then(blob => {
-            console.log(blob);
-
             const resultImageContainer = document.getElementById('result-image-container');
             resultImageContainer.innerHTML = `<img class="img-fluid img-thumbnail" src=${URL.createObjectURL(blob)} alt="">`;
         })
