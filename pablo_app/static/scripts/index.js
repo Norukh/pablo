@@ -119,7 +119,10 @@ function createLoader() {
 
 applyStyleButton.addEventListener('click', (event) => {
     const resultImageContainer = document.getElementById('result-image-container');
-    resultImageContainer.innerHTML = createLoader();
+    resultImageContainer.innerHTML = `<p class="mt-2">
+            Pablo is painting...
+        </p>`;
+    resultImageContainer.innerHTML += createLoader();
 
     applyStyle(chosenStyle);
 });

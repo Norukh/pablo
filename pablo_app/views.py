@@ -12,6 +12,7 @@ from django.shortcuts import get_list_or_404, render
 from .serializers import ContentImageSerializer, ArtistSerializer, PaintingSerializer
 from .models import Artist, Painting
 from .style_transfer.transfer import transfer_style
+from .style_transfer.utils import original_image_path
 
 
 def index(request):
@@ -36,6 +37,9 @@ class ContentImageView(APIView):
             uploaded_content_image = content_image_serializer.save()
             file_name = uploaded_content_image.file.name
             style_image = uploaded_content_image.style
+
+            if style_image is not None:
+                style_image = original_image_path(style_image)
 
             print(uploaded_content_image, file_name, style_image)
 

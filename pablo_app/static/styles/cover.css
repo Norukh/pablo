@@ -1,6 +1,7 @@
 /*
  * Globals
  */
+
 .hidden {
   display: none;
 }
@@ -12,11 +13,27 @@
 }
 
 .image-card {
+  box-shadow: 5px 5px 10px rgba(66, 139, 202, .15);
   min-height: 18em;
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(0,0,0,0.4);
+  text-shadow: 0 0 5px rgba(0,0,0, .25);
+}
+
+.title {
+  display: inline-flex;
+  align-items: center;
+}
+
+.img-title {
+  margin-right: 1em;
+  border-radius: 50%;
+  height: 2.5em;
+  width: 2.5em;
+  object-fit: cover;
+  box-shadow: 0 0 5px rgba(0,0,0, .25);
+  border: 1px solid #428bca;
 }
 
 /*

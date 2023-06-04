@@ -4,3 +4,4 @@ __pycache__/
 .idea/
 db.sqlite3
 pablo_app/static/images
+.ipynb_checkpoints
