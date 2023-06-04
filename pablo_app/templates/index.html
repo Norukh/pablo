@@ -25,117 +25,171 @@
           </h3>
           <nav class="nav nav-masthead justify-content-center float-md-end">
 
-            <a class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
-            <!-- <a class="nav-link fw-bold py-1 px-0" href="#">Features</a> -->
-            <a class="nav-link fw-bold py-1 px-0" href="#">Report</a>
+            <a id="home-link" class="nav-link fw-bold py-1 px-0 active" aria-current="page" href="#">Home</a>
+            <a id="report-link" class="nav-link fw-bold py-1 px-0" href="#">Report</a>
 
           </nav>
         </div>
       </header>
 
       <main class="px-3 mt-4">
-        <h1 class="text-glow">Apply the style of any artist to your image</h1>
 
-        <p class="lead">
-          <a id="apply-style-button" href="#" class="btn btn-lg btn-bd-primary hidden" data-bs-toggle="modal"
-             data-bs-target="#pictureModal">
-            Apply Style</a>
-        </p>
+        <section id="apply-style-section">
+            <h1 class="text-glow">Apply the style of any artist to your image</h1>
 
-        <p class="lead">
-          <div class="row">
-            <div class="col-md-6 mt-2">
+            <p class="lead">
+              <a id="apply-style-button" href="#" class="btn btn-lg btn-bd-primary hidden" data-bs-toggle="modal"
+                 data-bs-target="#pictureModal">
+                Apply Style</a>
+            </p>
 
-              <div class="card image-card">
-                <img id="content-image" src="#" class="card-img-top hidden" alt="content image">
+            <p class="lead">
+              <div class="row">
+                <div class="col-md-6 mt-2">
 
-                <div class="card-header">
-                  Content Image
+                  <div class="card image-card">
+                    <img id="content-image" src="#" class="card-img-top hidden" alt="content image">
+
+                    <div class="card-header">
+                      Content Image
+                    </div>
+                    <div class="card-body">
+
+                      <form enctype="multipart/form-data">
+                        <h5 class="card-title">Upload image</h5>
+                        <p class="card-text">
+
+                          <div class="mb-3">
+                            <label for="content-image-input" class="form-label">You can upload a JPEG or PNG file.</label>
+                            <input class="form-control" type="file" id="content-image-input">
+                          </div>
+
+                        </p>
+
+                      </form>
+
+                    </div>
+                  </div>
+
                 </div>
-                <div class="card-body">
+                <div class="col-md-6 mt-2">
 
-                  <form enctype="multipart/form-data">
-                    <h5 class="card-title">Upload image</h5>
-                    <p class="card-text">
+                  <div class="card image-card">
+                    <img id="style-image" src="#" class="card-img-top hidden" alt="style image">
 
-                      <div class="mb-3">
-                        <label for="content-image-input" class="form-label">You can upload a JPEG or PNG file.</label>
-                        <input class="form-control" type="file" id="content-image-input">
+                    <div class="card-header">
+                      Style Image
+                    </div>
+                    <div class="card-body">
+                      <h5 class="card-title">Select artist image</h5>
+                      <p class="card-text">
+                        With a click on the button below, you can select from various images of famous artists.
+                        <br />
+                        Pablo will put your image in the style of the selected image.
+                      </p>
+
+                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse-artist-list" role="button"
+                         aria-expanded="false" aria-controls="collapseExample">
+                        Choose image
+                      </a>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </p>
+
+            <div class="mt-2 mb-4 collapse" id="collapse-artist-list">
+
+              <div class="accordion" id="artist-accordion">
+              </div>
+
+              <p class="mt-3">
+                  These images are provided by the Kaggle.com dataset
+                  <a target="_blank" href="https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time">Best Artworks of All Time</a>
+              </p>
+
+            </div>
+
+            <!-- results picture modal -->
+            <div class="modal fade" id="pictureModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="pictureModalLabel">Result Image</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div id="result-image-container" class="modal-body">
+
+                    <div class="d-flex justify-content-center">
+                      <div class="spinner-border" role="status">
                       </div>
+                    </div>
 
-                    </p>
-
-                  </form>
-
-                </div>
-              </div>
-
-            </div>
-            <div class="col-md-6 mt-2">
-
-              <div class="card image-card">
-                <img id="style-image" src="#" class="card-img-top hidden" alt="style image">
-
-                <div class="card-header">
-                  Style Image
-                </div>
-                <div class="card-body">
-                  <h5 class="card-title">Select artist image</h5>
-                  <p class="card-text">
-                    With a click on the button below, you can select from various images of famous artists.
-                    <br />
-                    Pablo will put your image in the style of the selected image.
-                  </p>
-
-                  <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse-artist-list" role="button"
-                     aria-expanded="false" aria-controls="collapseExample">
-                    Choose image
-                  </a>
-
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-        </p>
-
-        <div class="mt-2 mb-4 collapse" id="collapse-artist-list">
-
-          <div class="accordion" id="artist-accordion">
-          </div>
-
-          <p class="mt-3">
-              These images are provided by the Kaggle.com dataset
-              <a target="_blank" href="https://www.kaggle.com/datasets/ikarus777/best-artworks-of-all-time">Best Artworks of All Time</a>
-          </p>
-
-        </div>
-
-        <!-- results picture modal -->
-        <div class="modal fade" id="pictureModal" tabindex="-1" aria-labelledby="pictureModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="pictureModalLabel">Result Image</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div id="result-image-container" class="modal-body">
-
-                <div class="d-flex justify-content-center">
-                  <div class="spinner-border" role="status">
+                  </div>
+                  <div class="modal-footer">
+                    <a id="download-button" class="hidden btn btn-primary" download>Download</a>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                   </div>
                 </div>
-
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Download</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
               </div>
             </div>
-          </div>
-        </div>
+        </section>
 
+        <section id="report-section" class="hidden">
+            <h2>Read our report about Pablo here</h2>
+
+            <p class="lead">
+                <div class="row">
+
+                    <div class="col-md-8 offset-md-2">
+                        <div class="card image-card">
+                            <img id="report-title" src="/static/images/report-title.png" class="card-img-top" alt="Title page of the report about Pablo">
+
+                            <div class="card-body" style="text-align: left !important;">
+
+                                <p class="card-text">
+                                    <h5>Abstract</h5>
+                                    <h6 class="mt-2">Problem</h6>
+                                    Generative künstliche Intelligenzen wie DALL-E, Midjourney, OpenAIs MuseNet oder
+                                    Pictory, die Bilder, Audio und sogar Video erstellen, erweitern und verändern können,
+                                    sind auf dem Vormarsch.
+                                    Dabei stellt sich die Frage, ob es auch möglich ist, einen Stil,
+                                    z.B. den eines Bildes, auf andere Bilder zu übertragen.
+                                    In diesem Report stellen wir eine Implementierung in Form einer Webanwendung namens „Pablo“ eines Neural Style
+                                    Transfer Modells aus der Magenta Library vor.
+
+                                    <h6 class="mt-2">Ziel</h6>
+                                    Wir wollen zeigen, wie die Magenta Library genutzt werden kann und welche Möglichkeiten sich daraus für Kulturschaffende ergeben und wie generative AI dabei eingesetzt
+                                    werden kann.
+
+                                    <h6 class="mt-2">Methode</h6>
+                                    Es wurden verschiedene Fachtexte, Artikel und Websites recherchiert und eine Anwendung in Form einer Python-basierten Django-Webanwendung implementiert.
+
+                                    <h6 class="mt-2">Wesentliche Ergebnisse</h6>
+                                    Unsere Quellen und die eigens entwickelte Webanwendung „Pablo“ bestätigen, dass die Technologie die Arbeit mit Bildern, insbesondere in der digitalen Fotografie, durchaus erleichtern und die Kreativität weiter fördern kann.
+
+                                    <h6 class="mt-2">Empfehlung</h6>
+                                    In diesem Bericht kommen wir zu dem Schluss, dass aus künstlerischer Sicht eine interessante Entwicklung im Bereich der generativen KI stattfindet.
+                                    Eine kommerzielle Anwendung wäre auch für Fotografen denkbar.
+                                    Anwendungsprogramme wie Adobe Lightroom, die hauptsächlich mit digitalen Filtern arbeiten, könnten ein solches Modell nutzen, um komplexe Stile nahezu in Echtzeit auf andere Bilder anzuwenden.
+                                </p>
+
+                            </div>
+
+                            <div class="card-footer">
+                                <a class="btn btn-success" href="/static/documents/Pablo_Report_Fehr_Maag.pdf" target="_blank">
+                                    Open the report (German)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </p>
+
+        </section>
       </main>
 
       <footer class="mt-auto pb-2">

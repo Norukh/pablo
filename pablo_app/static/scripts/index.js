@@ -1,6 +1,7 @@
 import {applyStyle, getArtists, getPaintings} from "./services/artist-service.js";
 import {isEmpty} from "./utils/utils.js";
 import {BASE_URL} from "./utils/constants.js";
+import {hideAllSections, showApplyStyleSection, showReportSection} from "./services/display-service.js";
 
 const contentImageInput = document.getElementById('content-image-input');
 const contentImage = document.getElementById('content-image');
@@ -9,6 +10,10 @@ const styleImage = document.getElementById('style-image');
 const artistAccordion = document.getElementById('artist-accordion');
 
 const applyStyleButton = document.getElementById('apply-style-button');
+const downloadButton = document.getElementById('download-button');
+
+const homeLink = document.getElementById('home-link');
+const reportLink = document.getElementById('report-link');
 
 contentImageInput.addEventListener('change', (e) => {
     const input = e.target;
@@ -69,8 +74,6 @@ function loadArtists() {
     });
 }
 
-loadArtists();
-
 function loadPaintings(artistId) {
     const accordionBody = document.getElementById(`accordion-body-${artistId}`);
 
@@ -118,6 +121,8 @@ function createLoader() {
 }
 
 applyStyleButton.addEventListener('click', (event) => {
+    downloadButton.classList.add('hidden');
+
     const resultImageContainer = document.getElementById('result-image-container');
     resultImageContainer.innerHTML = `<p class="mt-2">
             Pablo is painting...
@@ -126,3 +131,22 @@ applyStyleButton.addEventListener('click', (event) => {
 
     applyStyle(chosenStyle);
 });
+
+homeLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    reportLink.classList.remove('active');
+    homeLink.classList.add('active');
+    showApplyStyleSection();
+})
+
+reportLink.addEventListener('click', (event) => {
+    event.preventDefault();
+    homeLink.classList.remove('active');
+    reportLink.classList.add('active');
+    showReportSection();
+})
+
+hideAllSections();
+loadArtists();
+
+showApplyStyleSection();
