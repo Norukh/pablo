@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM --platform=linux/arm64 python:3.9
 
 WORKDIR /usr/src/app
 
@@ -10,4 +10,4 @@ COPY . /usr/src/app
 
 # For Django
 EXPOSE 8000
-CMD ["python", "-v", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
