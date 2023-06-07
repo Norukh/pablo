@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY requirements.txt /usr/src/app
 RUN pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt -U
 
 RUN pip install tensorflow-aarch64 -f https://tf.kmtea.eu/whl/stable.html
 
