@@ -59,7 +59,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN a2enmod wsgi
 
 # Copy the installed dependencies from the builder stage
-COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
+COPY --from=builder /venv/ /venv/
 COPY --from=builder /app/ /app/
 
 # Set the working directory in the container
