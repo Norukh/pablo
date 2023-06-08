@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libapache2-mod-wsgi-py3
 
 # Install Python
-RUN apt-get install -y --no-install-recommends python3 python3-pip python3-dev python3-venv
+RUN apt-get install -y --no-install-recommends python3 python3-pip python3-dev python3-venv python3-distutils python3-apt
 
 # Install TensorFlow
 RUN python3 -m venv /venv
