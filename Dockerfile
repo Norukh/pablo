@@ -55,6 +55,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apache2 \
     libapache2-mod-wsgi-py3
 
+# Set the APACHE_LOG_DIR, APACHE_PID_FILE, APACHE_RUN_GROUP, and APACHE_RUN_USER environment variables
+ENV APACHE_LOG_DIR=/var/log/apache2 \
+    APACHE_PID_FILE=/var/run/apache2/apache2.pid \
+    APACHE_RUN_GROUP=www-data \
+    APACHE_RUN_USER=www-data
+
 # Set the APACHE_RUN_DIR environment variable
 ENV APACHE_RUN_DIR=/var/run/apache2
 
@@ -75,8 +81,23 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 # Copy the Apache configuration
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
+# Create Apache logs directory
+RUN mkdir /var/log/apache2
+
+# Create Apache run directory
+RUN mkdir /var/run/apache2
+
+# Create Apache lock directory
+RUN mkdir /var/lock/apache2
+
 # Set Python encoding environment variable
 ENV PYTHONIOENCODING="UTF-8"
+
+# Set the user and group ownership for Apache directories
+RUN chown -R www-data:www-data /var/log/apache2 /var/run/apache2 /var/lock/apache2
+
+# Enable the Apache configuration
+RUN a2ensite 000-default
 
 # Expose the required port
 EXPOSE 80
