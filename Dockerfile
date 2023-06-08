@@ -55,6 +55,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apache2 \
     libapache2-mod-wsgi-py3
 
+# Install Python
+RUN apt-get install -y --no-install-recommends python3 python3-pip python3-dev python3-venv python3-distutils python3-apt
+
 # Set the APACHE_LOG_DIR, APACHE_PID_FILE, APACHE_RUN_GROUP, and APACHE_RUN_USER environment variables
 ENV APACHE_LOG_DIR=/var/log/apache2 \
     APACHE_PID_FILE=/var/run/apache2/apache2.pid \
