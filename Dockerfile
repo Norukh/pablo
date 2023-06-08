@@ -36,7 +36,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Run Django migrations
-RUN export DJANGO_SECRET_KEY=secret-key-for-migration-1234567890000000000000000
+ARG DJANGO_SECRET_KEY
+ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 RUN python manage.py makemigrations
 RUN python manage.py migrate
@@ -50,6 +51,10 @@ WORKDIR /app
 # Copy the installed dependencies from the builder stage
 COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
 COPY --from=builder /app/ /app/
+
+# Set the secret key environment variable
+ARG DJANGO_SECRET_KEY
+ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 # Expose the required port
 EXPOSE 8000
