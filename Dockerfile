@@ -49,7 +49,9 @@ FROM python:3.9-slim-buster
 # Install Apache and mod_wsgi
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apache2 \
-    libapache2-mod-wsgi-py3
+    libapache2-mod-wsgi-py3 \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Enable mod_wsgi
 RUN a2enmod wsgi
@@ -67,6 +69,9 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 # Copy the Apache configuration
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
+# Set Python encoding environment variable
+ENV PYTHONIOENCODING="UTF-8"
 
 # Expose the required port
 EXPOSE 8000
