@@ -1,13 +1,10 @@
-# Use the official Python image as the base image
-FROM python:3.9-slim-buster as builder
+# Use Ubuntu as the base image
+FROM ubuntu:20.04 as builder
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file
-COPY requirements.txt .
-
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libblas-dev \
@@ -21,16 +18,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libjpeg-dev \
     zlib1g-dev \
     libopenblas-dev \
-    libopenblas-base \
     libopenmpi-dev \
     openmpi-bin \
-    && pip install --no-cache-dir numpy==1.21.0
+    apache2 \
+    libapache2-mod-wsgi-py3
+
+# Install Python
+RUN apt-get install -y --no-install-recommends python3 python3-pip python3-dev python3-venv
 
 # Install TensorFlow
-RUN pip install --no-cache-dir tensorflow
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+RUN pip3 install --no-cache-dir tensorflow
 
 # Install Django and other dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 # Copy the application code
 COPY . .
@@ -44,14 +47,12 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic
 
 # Stage 2: Final image
-FROM python:3.9-slim-buster
+FROM ubuntu:20.04
 
 # Install Apache and mod_wsgi
 RUN apt-get update && apt-get install -y --no-install-recommends \
     apache2 \
-    libapache2-mod-wsgi-py3 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    libapache2-mod-wsgi-py3
 
 # Enable mod_wsgi
 RUN a2enmod wsgi
