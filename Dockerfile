@@ -4,6 +4,8 @@ FROM ubuntu:20.04 as builder
 # Set the working directory in the container
 WORKDIR /app
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
