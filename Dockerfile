@@ -41,6 +41,7 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
 RUN python manage.py makemigrations
 RUN python manage.py migrate
+RUN python manage.py collectstatic
 
 # Stage 2: Final image
 FROM python:3.9-slim-buster
