@@ -76,7 +76,7 @@ COPY apache.conf /etc/apache2/sites-available/000-default.conf
 ENV PYTHONIOENCODING="UTF-8"
 
 # Expose the required port
-EXPOSE 8000
+EXPOSE 80
 
 # Run Apache in the foreground
 CMD ["apache2ctl", "-D", "FOREGROUND"]
