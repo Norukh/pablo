@@ -32,6 +32,8 @@ RUN pip install --no-cache-dir tensorflow
 # Install Django and other dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN export DJANGO_SECRET_KEY=secret-key-for-migration-1234567890000000000000000
+
 # Copy the application code
 COPY . .
 
