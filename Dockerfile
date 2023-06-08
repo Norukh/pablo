@@ -1,5 +1,5 @@
 # Use Ubuntu as the base image
-FROM ubuntu:20.04 as builder
+FROM arm64v8/ubuntu:22.04 as builder
 
 # Set the working directory in the container
 WORKDIR /app
@@ -48,7 +48,7 @@ RUN python manage.py migrate
 RUN python manage.py collectstatic
 
 # Stage 2: Final image
-FROM ubuntu:20.04
+FROM arm64v8/ubuntu:22.04
 
 # Install Apache and mod_wsgi
 RUN apt-get update && apt-get install -y --no-install-recommends \
