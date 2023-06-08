@@ -55,6 +55,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     apache2 \
     libapache2-mod-wsgi-py3
 
+# Set the APACHE_RUN_DIR environment variable
+ENV APACHE_RUN_DIR=/var/run/apache2
+
 # Enable mod_wsgi
 RUN a2enmod wsgi
 
