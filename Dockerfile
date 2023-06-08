@@ -81,12 +81,6 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 # Copy the Apache configuration
 COPY apache.conf /etc/apache2/sites-available/000-default.conf
 
-# Create Apache run directory
-RUN mkdir /var/run/apache2
-
-# Create Apache lock directory
-RUN mkdir /var/lock/apache2
-
 # Set Python encoding environment variable
 ENV PYTHONIOENCODING="UTF-8"
 
