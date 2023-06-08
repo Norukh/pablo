@@ -31,7 +31,6 @@ RUN apt-get install -y --no-install-recommends python3 python3-pip python3-dev p
 # Install TensorFlow
 RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
-RUN pip3 install --no-cache-dir tensorflow
 
 # Install Django and other dependencies
 COPY requirements.txt .
