@@ -46,19 +46,30 @@ RUN python manage.py collectstatic
 # Stage 2: Final image
 FROM python:3.9-slim-buster
 
-# Set the working directory in the container
-WORKDIR /app
+# Install Apache and mod_wsgi
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    apache2 \
+    libapache2-mod-wsgi-py3
+
+# Enable mod_wsgi
+RUN a2enmod wsgi
 
 # Copy the installed dependencies from the builder stage
 COPY --from=builder /usr/local/lib/python3.9/site-packages/ /usr/local/lib/python3.9/site-packages/
 COPY --from=builder /app/ /app/
 
+# Set the working directory in the container
+WORKDIR /app
+
 # Set the secret key environment variable
 ARG DJANGO_SECRET_KEY
 ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 
+# Copy the Apache configuration
+COPY apache.conf /etc/apache2/sites-available/000-default.conf
+
 # Expose the required port
 EXPOSE 8000
 
-# Run the Django server
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Run Apache in the foreground
+CMD ["apache2ctl", "-D", "FOREGROUND"]
