@@ -23,6 +23,8 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
+RUN chmod a+x startup.sh
+
 # Run Django
 EXPOSE 8080
 CMD ["/bin/bash", "-c", "./startup.sh"]
