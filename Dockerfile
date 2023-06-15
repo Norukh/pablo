@@ -23,6 +23,25 @@ ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
+# Stage 2: Final image
+# Use a Python base image
+FROM python:3.9
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the installed dependencies from the builder stage
+COPY --from=builder /app/ /app/
+COPY --from=builder /images /app/pablo_app/static
+
+# Set the secret key environment variable
+ARG DJANGO_SECRET_KEY
+ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
