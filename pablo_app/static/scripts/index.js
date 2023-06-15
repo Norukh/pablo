@@ -1,5 +1,5 @@
 import {applyStyle, getArtists, getPaintings} from "./services/artist-service.js";
-import {isEmpty} from "./utils/utils.js";
+import {isEmpty, lowerCaseFileExtension} from "./utils/utils.js";
 import {BASE_URL} from "./utils/constants.js";
 import {hideAllSections, showApplyStyleSection, showReportSection} from "./services/display-service.js";
 
@@ -86,10 +86,10 @@ function loadPaintings(artistId) {
        accordionBody.innerHTML = `<div class="row">
         
         ${paintings.map((painting) => `<div class="col-md-3 mt-3">
-            <a href="#" data-style-path="${painting.path}">
-                <img src="${BASE_URL}${painting.path}" class="img-thumbnail">
+            <a href="#" data-style-path="${lowerCaseFileExtension(painting.path)}">
+                <img src="${BASE_URL}${lowerCaseFileExtension(painting.path)}" class="img-thumbnail">
             </a>
-        </div>`).join('')}       
+        </div>`).join('')}
        </div>`;
     });
 }
