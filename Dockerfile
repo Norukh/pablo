@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Copy images from mount to static files
-#COPY /images pablo_app/static
+COPY /images pablo_app/static
 
 # Run Django migrations
 ARG DJANGO_SECRET_KEY
