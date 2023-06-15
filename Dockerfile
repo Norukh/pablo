@@ -25,4 +25,4 @@ RUN python manage.py migrate
 
 # Run Django
 EXPOSE 8080
-CMD ["cp -r /images /app/pablo_app/static; python manage.py collectstatic --noinput; python manage.py runserver 0.0.0.0:8080"]
+CMD ["/bin/bash", "-c", "./startup.sh"]
