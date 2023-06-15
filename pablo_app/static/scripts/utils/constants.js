@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:8080"
+export const BASE_URL = ""
 export const SERVICE_URL = `${BASE_URL}/`;
 
 export const ARTISTS_URL = `${SERVICE_URL}artists`;
