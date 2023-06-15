@@ -1,5 +1,5 @@
 export const BASE_URL = "http://localhost:8080"
-export const SERVICE_URL = `${BASE_URL}/pablo/`;
+export const SERVICE_URL = `${BASE_URL}/`;
 
 export const ARTISTS_URL = `${SERVICE_URL}artists`;
 export const PAINTINGS_URL = (artistId) => `${SERVICE_URL}paintings/${artistId}`;

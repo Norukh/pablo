@@ -15,6 +15,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project to the container
 COPY . .
 
+# Copy images from mount to static files
+COPY /images pablo_app/static
+
 # Run Django migrations
 ARG DJANGO_SECRET_KEY
 ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
@@ -26,6 +29,6 @@ RUN python manage.py migrate
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
-# Run Gunicorn
-EXPOSE 8000
-CMD ["gunicorn", "your_project.wsgi:application", "--bind", "0.0.0.0:8000"]
+# Run Django
+EXPOSE 8080
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
