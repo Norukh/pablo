@@ -15,9 +15,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project to the container
 COPY . .
 
-# Copy images from mount to static files
-COPY /images pablo_app/static
-
 # Run Django migrations
 ARG DJANGO_SECRET_KEY
 ENV DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
